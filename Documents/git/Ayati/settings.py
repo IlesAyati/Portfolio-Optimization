@@ -13,11 +13,14 @@ class settings:
     Optimisersettings = {}
     OptimiserType = 'OLS'
     CompaniesUrl = 'https://www.oslobors.no/markedsaktivitet/#/list/shares/quotelist/ob/all/all/false'
-    NumberOfPortfolios = 10000 #0000#0
+    NumberOfPortfolios = 100000 #0000#0
     API = 'eikon'
     YearsToGoBack = 5
-    RiskFreeRate = 0.015
-    Interval = 'Weekly'
+    RiskFreeRate = 0.019
+    SMA1 = 8
+    SMA2 = 21
+    SMA3 = 200
+    Interval = 'Daily'
     CompanyFetchMode = "PreFixed" #Auto
     MyCompanies = ['NOD.OL', 'KOA.OL', 'AMSCA.OL', 'B2H.OL', 'GOGLT.OL', 'FKRAFT.OL', 'VEI.OL', 'ASETEK.OL', 'FRO.OL']
     PortfolioOptimisationPath = "PortfolioOptimisation.xlsx"
@@ -33,10 +36,9 @@ class settings:
 
     @staticmethod
     def get_end_date():
-        return '2020-05-01' #dt.date.today()
+        return dt.date.today()
 
     @staticmethod
-    def get_start_date():
-        return '2015-05-01' #end_date - dt.timedelta(days=settings.YearsToGoBack*365)
-
-# sadsdsd"
+    def get_start_date(end_date):
+        return end_date - dt.timedelta(days=settings.YearsToGoBack*365)
+    

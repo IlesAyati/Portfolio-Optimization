@@ -1,7 +1,8 @@
 import pandas as pd
 from settings import settings
+import eikon as ek
 
-class webpage_companies_extractor:
+class eikon_companies_extractor:
     def __init__(self):
         print('Initialised Companies Extractor')
         pass
@@ -11,8 +12,7 @@ class webpage_companies_extractor:
         rics, ee =  ek.get_data(instruments = '0#.OSEBX',
                                 fields = ['TR.RIC'])
         rics.drop(columns = 'Instrument', inplace=True)
-        return list(rics['RIC'])[:9]
-
+        return list(rics['RIC'])
 
 class static_companies_extractor:
     def __init__(self, my_companies):

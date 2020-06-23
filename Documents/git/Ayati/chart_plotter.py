@@ -52,8 +52,18 @@ class chart_plotter:
         ax = plt.gca()
         columns = [c for c in closing_prices.columns if c not in 'Date']
         closing_prices.plot(kind='line',use_index=True,y=columns,ax=ax, title='Asset (Stock) Prices')
+        ax.get_legend().remove()
         plt.show()
 
+    def plot_sma(self, SMA1, SMA2, positions):
+        ax = plt.gca()
+        columns = [c for c in SMA1.columns if c not in 'Date']
+        SMA1.plot(kind = 'line', use_index = True, y = columns, ax=ax)
+        SMA2.plot(kind = 'line', use_index = True, y = columns, ax=ax, title = 'Simple Moving Average')
+        ax.get_legend().remove()
+        ax2 = ax.twinx()
+        ax2.plot(positions)
+        plt.show()
 
     def plot_returns(self, returns):
         ax = plt.gca()
