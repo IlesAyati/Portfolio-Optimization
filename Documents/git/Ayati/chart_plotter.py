@@ -54,15 +54,23 @@ class chart_plotter:
         closing_prices.plot(kind='line',use_index=True,y=columns,ax=ax, title='Asset (Stock) Prices')
         ax.get_legend().remove()
         plt.show()
+        
+    def plot_investments(self, investments):
+        ax = plt.gca()
+        columns = [c for c in investments.columns if c not in 'Date']
+        investments.plot(kind='line',use_index=True,y=columns,ax=ax, title='Capital')
+        ax.get_legend().remove()
+        plt.show()
 
     def plot_sma(self, SMA1, SMA2, positions):
         ax = plt.gca()
         columns = [c for c in SMA1.columns if c not in 'Date']
-        SMA1.plot(kind = 'line', use_index = True, y = columns, ax=ax)
-        SMA2.plot(kind = 'line', use_index = True, y = columns, ax=ax, title = 'Simple Moving Average')
-        ax.get_legend().remove()
+        SMA1['FKRAFT.OL'].plot(kind = 'line', use_index = True, y = columns, ax=ax)
+        SMA2['FKRAFT.OL'].plot(kind = 'line', use_index = True, y = columns, ax=ax, title = 'Simple Moving Average')
+        #ax.get_legend().remove()
         ax2 = ax.twinx()
-        ax2.plot(positions)
+        positions['FKRAFT.OL'].plot(kind='line', use_index = True, y = columns, ax = ax2)
+        #ax2.get_legend().remove()
         plt.show()
 
     def plot_returns(self, returns):

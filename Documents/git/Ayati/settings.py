@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 import datetime as dt
 from calculator import risk_return_calculator
 import configparser as cp
@@ -13,15 +14,15 @@ class settings:
     Optimisersettings = {}
     OptimiserType = 'OLS'
     CompaniesUrl = 'https://www.oslobors.no/markedsaktivitet/#/list/shares/quotelist/ob/all/all/false'
-    NumberOfPortfolios = 100000 #0000#0
+    NumberOfPortfolios = 10000 #0000#0
     API = 'eikon'
     YearsToGoBack = 5
     RiskFreeRate = 0.019
-    SMA1 = 8
-    SMA2 = 21
+    SMA1 = 55
+    SMA2 = 200
     SMA3 = 200
     Interval = 'Daily'
-    CompanyFetchMode = "PreFixed" #Auto
+    #CompanyFetchMode = "PreFixed" #Auto
     MyCompanies = ['NOD.OL', 'KOA.OL', 'AMSCA.OL', 'B2H.OL', 'GOGLT.OL', 'FKRAFT.OL', 'VEI.OL', 'ASETEK.OL', 'FRO.OL']
     PortfolioOptimisationPath = "PortfolioOptimisation.xlsx"
     RiskFunction = risk_return_calculator.calculate_portfolio_risk

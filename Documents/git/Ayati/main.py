@@ -32,13 +32,19 @@ def generate_optimum_portfolio():
 
     print('3. Calculate Daily Returns')
     returns = settings.DailyAssetsReturnsFunction(closing_prices, settings.ReturnType)
+    # Calculate return of investment
+    investments = mc.calculate_investment_return(positions,returns)
+    # sdsdsd
+    #ols_capm = st.strategy_capm(returns, start_date)
     # Plot stock prices & save data to a file
+    cp.plot_investments(investments)
     #cp.plot_returns(returns)
     fr.save_to_file(returns, 'Returns')
 
     print('4. Calculate Expected Mean Return & Covariance')
     expected_returns = settings.AssetsExpectedReturnsFunction(returns)
     covariance = settings.AssetsCovarianceFunction(returns)
+
     # Plot & Save covariance to file
     #cp.plot_correlation_matrix(returns)
     fr.save_to_file(covariance, 'Covariances')
@@ -66,7 +72,7 @@ def generate_optimum_portfolio():
     max_sharpe_portfolio = mc.get_max_sharpe_ratio(portfolio_risk_return_ratio_df)['Portfolio']
     max_shape_ratio_allocations = portfolios_allocations_df[[ 'Symbol', max_sharpe_portfolio]]
     print(max_shape_ratio_allocations)
-    
+
     # Plot efficient frontiers
     cp.plot_efficient_frontier(portfolio_risk_return_ratio_df)
     cp.show_plots()

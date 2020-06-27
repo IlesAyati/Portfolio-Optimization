@@ -5,11 +5,11 @@ import pandas as pd
 class risk_return_calculator:
     @staticmethod
     def calculate_assets_expectedreturns(returns):
-            return returns.mean() * 50
+            return returns.mean() * 252
 
     @staticmethod
     def calculate_assets_covariance(returns):
-            return returns.cov() * 50
+            return returns.cov() * 252
 
     @staticmethod
     def calculate_portfolio_expectedreturns(returns, allocations):
@@ -47,3 +47,13 @@ class metrics_calculator:
     @staticmethod
     def get_min_risk(df):
         return df.iloc[df['Risk'].astype(float).idxmin()]
+
+    @staticmethod
+    def calculate_investment_return(positions,returns):
+        investment_return = positions.shift(1)*returns
+        investment_level = pd.DataFrame(np.exp(investment_return), 
+                                        index = positions.index,
+                                        columns=positions.columns).cumprod()
+        #
+        investment_level['Mean Return'] = investment_level.mean(axis=1)
+        return investment_level
