@@ -15,7 +15,7 @@ class risk_return_calculator:
     def calculate_portfolio_expectedreturns(returns, allocations):
         return sum(returns * allocations)
 
-    @staticmethod    
+    @staticmethod
     def calculate_portfolio_risk(allocations, cov):
         return np.sqrt(reduce(np.dot, [allocations, cov, allocations.T]))
 

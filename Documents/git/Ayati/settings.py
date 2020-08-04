@@ -3,19 +3,20 @@ import pandas as pd
 import datetime as dt
 from calculator import risk_return_calculator
 import configparser as cp
-import eikon as ek
+#import eikon as ek
+import quandl
 
 class settings:
     cfg = cp.ConfigParser()
-    cfg.read('eikon.cfg')
-    ek.set_app_key(cfg['eikon']['app_id'])
+    cfg.read('quandl.cfg')
+    #ek.set_app_key(cfg['eikon']['app_id'])
+    quandl.ApiConfig.api_key = cfg['quandl']['app_id']
     PriceEvent = 'Adj Close'
     ReturnType = 'Geometric'
     Optimisersettings = {}
     OptimiserType = 'OLS'
-    CompaniesUrl = 'https://www.oslobors.no/markedsaktivitet/#/list/shares/quotelist/ob/all/all/false'
+    CompaniesUrl = 'https://www.oslobors.no/markedsaktivitet/#/list/shares/quotelist/ose/all/all/false'
     NumberOfPortfolios = 10000 #0000#0
-    API = 'eikon'
     YearsToGoBack = 5
     RiskFreeRate = 0.019
     SMA1 = 55
@@ -42,4 +43,11 @@ class settings:
     @staticmethod
     def get_start_date(end_date):
         return end_date - dt.timedelta(days=settings.YearsToGoBack*365)
-    
+
+    @staticmethod
+    def get_user_choice():
+        """ Prompt for user's choice and return it. """
+        user_input = input('Choose API: ')
+        print(user_input)
+        return user_input
+

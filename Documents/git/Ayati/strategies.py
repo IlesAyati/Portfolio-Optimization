@@ -11,8 +11,8 @@ import pandas_datareader as pdr
 from calculator import risk_return_calculator
 
 class strategies:
-    """ A collection of functions that the automated trading 
-    transaction pattern. Positions are == 1 for "BUY" orders 
+    """ A collection of functions that make the automated trading
+    transaction pattern. Positions are == 1 for "BUY" orders
     and -1 for "SELL" orders. """
 
     def __init__(self):

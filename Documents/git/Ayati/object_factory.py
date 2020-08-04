@@ -1,7 +1,7 @@
 from chart_plotter import chart_plotter
 from file_repository import file_repository
 from monte_carlo_simulator import monte_carlo_simulator
-from companies_extractor import eikon_companies_extractor
+from companies_extractor import dynamic_companies_extractor
 from companies_extractor import static_companies_extractor
 from price_extractor import price_extractor
 from calculator import metrics_calculator
@@ -24,7 +24,7 @@ class object_factory:
         return chart_plotter(self.get_metrics_calculator())
 
     def get_companies_extractor(self):
-        return eikon_companies_extractor()
+        return dynamic_companies_extractor()
 
     def get_portfolio_generator(self):
         return monte_carlo_simulator(self.get_metrics_calculator(), self.__settings.RiskFunction, self.__settings.ReturnFunction, self.__settings.NumberOfPortfolios)

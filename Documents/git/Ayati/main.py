@@ -3,7 +3,8 @@ from object_factory import object_factory
 from mappers import portfolios_allocation_mapper
 
 def generate_optimum_portfolio():
-
+    """ Stepwise generation of optimum portfolios, using the monte carlo
+    approach and then a Markowitz optimization approach. """
     # Initialize objects with the settings
     obj_factory = object_factory(settings)
     ce = obj_factory.get_companies_extractor()
@@ -25,10 +26,10 @@ def generate_optimum_portfolio():
     sma2 = mc.get_sma(closing_prices, settings.SMA2)
 
     # Plot stock prices & save data to a file
-    cp.plot_prices(closing_prices)
+    #cp.plot_prices(closing_prices)
     positions = st.strategy_sma(closing_prices, sma1, sma2)
-    cp.plot_sma(sma1,sma2,positions)
-    fr.save_to_file(closing_prices, 'StockPrices')
+    #cp.plot_sma(sma1,sma2,positions)
+    #fr.save_to_file(closing_prices, 'StockPrices')
 
     print('3. Calculate Daily Returns')
     returns = settings.DailyAssetsReturnsFunction(closing_prices, settings.ReturnType)
@@ -74,8 +75,8 @@ def generate_optimum_portfolio():
     print(max_shape_ratio_allocations)
 
     # Plot efficient frontiers
-    cp.plot_efficient_frontier(portfolio_risk_return_ratio_df)
-    cp.show_plots()
+    #cp.plot_efficient_frontier(portfolio_risk_return_ratio_df)
+    #cp.show_plots()
 
     # Save data
     print('7. Saving Data')
